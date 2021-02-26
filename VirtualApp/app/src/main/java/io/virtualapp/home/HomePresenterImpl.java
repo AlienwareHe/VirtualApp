@@ -119,10 +119,10 @@ class HomePresenterImpl implements HomeContract.HomePresenter {
             }
         }
         long lastTime = VActivityManager.get().getLastBackHomeTime();
-        Log.e("kk-test", "getLastBackHomeTime="+lastTime);
+        Log.e("kk-test", "getLastBackHomeTime=" + lastTime);
         long time = System.currentTimeMillis() - lastTime;
         if (lastTime > 0 && time <= 6000 && "com.xdja.HDSafeEMailClient".equals(packageName)) {
-            Log.e("kk-test", "stat app delay "+time);
+            Log.e("kk-test", "stat app delay " + time);
             VUiKit.postDelayed(Math.max(2000, time), () -> {
                 VActivityManager.get().launchApp(userId, packageName);
             });
@@ -153,6 +153,7 @@ class HomePresenterImpl implements HomeContract.HomePresenter {
                 addResult.userId = MultiAppHelper.installExistedPackage(installedAppInfo);
             } else {
                 InstallResult res = mRepo.addVirtualApp(info);
+                Log.i("VA", "install va result:" + res.error);
                 if (!res.isSuccess) {
                     throw new IllegalStateException();
                 }

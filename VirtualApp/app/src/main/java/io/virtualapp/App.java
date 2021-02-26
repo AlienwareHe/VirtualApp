@@ -61,7 +61,7 @@ public class App extends Application {
 
         @Override
         public String getPluginEnginePackageName() {
-            return null;
+            return BuildConfig.PACKAGE_NAME_ARM64;
         }
 
         @Override

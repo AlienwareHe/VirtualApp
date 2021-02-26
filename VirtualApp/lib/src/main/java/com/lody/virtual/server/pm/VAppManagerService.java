@@ -448,8 +448,10 @@ public class VAppManagerService extends IAppManager.Stub {
         }
         if ((VirtualRuntime.is64bit() && ps.flag == PackageSetting.FLAG_RUN_32BIT)
                 || (!VirtualRuntime.is64bit() && ps.flag == PackageSetting.FLAG_RUN_64BIT)) {
-            if (!VirtualCore.get().is64BitEngineInstalled() || !V64BitHelper.has64BitEngineStartPermission()) {
-                return InstallResult.makeFailure("64bit engine not installed.");
+            if (!VirtualCore.get().is64BitEngineInstalled()) {
+                return InstallResult.makeFailure("64bit engine not installed:" + StubManifest.PACKAGE_NAME_64BIT);
+            }else if( !V64BitHelper.has64BitEngineStartPermission()){
+                return InstallResult.makeFailure("no 64bit engine start permission");
             }
         }
         NativeLibraryHelperCompat.copyNativeBinaries(packageFile, VEnvironment.getAppLibDirectory(pkg.packageName), soMap);

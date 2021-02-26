@@ -9,6 +9,7 @@ import android.util.Log;
 import com.lody.virtual.client.NativeEngine;
 import com.lody.virtual.client.core.AppCallback;
 import com.lody.virtual.helper.compat.BuildCompat;
+import com.swift.sandhook.xposedcompat.utils.ApplicationUtils;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -21,7 +22,6 @@ import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedHelpers;
 
 public class MyComponentDelegate implements AppCallback {
-
     @Override
     public void beforeStartApplication(String packageName, String processName, Context context) {
         //List<String> addedPaths
